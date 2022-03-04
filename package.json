@@ -1,0 +1,39 @@
+{
+  "name": "bang-ui-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development --env.APP_ENV=dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production --env.APP_ENV=prod",
+    "storybook": "start-storybook -s ./src -p 6006",
+    "sbinit": "sb init /* this was something I added b/c 'npx -p @storybook/cli sb init' failed, and I had to run 'npm install @storybook/cli', and then 'npm run sbinit' */",
+    "build-storybook": "build-storybook"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@storybook/addon-actions": "^6.0.21",
+    "@storybook/addon-essentials": "^6.0.21",
+    "@storybook/addon-links": "^6.0.21",
+    "@storybook/react": "^6.0.21",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.1.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "react-is": "^16.13.1",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "@storybook/cli": "^6.0.21",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
