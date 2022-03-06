@@ -30,7 +30,7 @@ class CurrentPlayer extends Component {
       if (document.cookie) {
           const cookies = document.cookie.split(";");
           for (var i=0; i<cookies.length; i++){
-              if (cookies[i].trim().startsWith("playerName=")){
+              if (cookies[i].trim().startsWith("playerName=")){ 
                   return cookies[i].trim().substring(11);                    
               }
           }
@@ -38,14 +38,15 @@ class CurrentPlayer extends Component {
     }
   
     getGameName() {
-      if (document.cookie) {
-          const cookies = document.cookie.split(";");
-          for (var i=0; i<cookies.length; i++){
-              if (cookies[i].trim().startsWith("gameName=")){
-                  return cookies[i].trim().substring(9);                    
-              }
-          }
-      }
+    //   if (document.cookie) {
+    //       const cookies = document.cookie.split(";");
+    //       for (var i=0; i<cookies.length; i++){
+    //           if (cookies[i].trim().startsWith("gameName=")){
+    //               return cookies[i].trim().substring(9);                    
+    //           }
+    //       }
+    //   }
+        return document.querySelector("#gameId").value;
     }
 
     handleAction(event, actionName, actionData) {
@@ -53,7 +54,7 @@ class CurrentPlayer extends Component {
 
         let myRequest = new Request(Utility.apiServer() + "/" + actionName);
         let requestInit = Utility.postRequestInit();
-        let body = {"playerId":this.getPlayerName(),"gameName":this.getGameName() };
+        let body = {"playerId":this.getPlayerName(),"gameId":this.getGameName() };
         if (actionData) {
             for (const key of Object.keys(actionData)) {
                 body[key] = actionData[key];

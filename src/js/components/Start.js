@@ -28,33 +28,34 @@ class Start extends Component {
     }
 
     handleStartGame(event) {
-        event.preventDefault();
+        event.preventDefault(); 
 
         let splashForm = event.target.closest("form");
-
+ 
         var myRequest = new Request(Utility.apiServer() + "/start");
         var requestInit = Utility.postRequestInit();
-        requestInit.body = JSON.stringify({"gameName":splashForm.querySelector("#gameName").value });
+        requestInit.body = JSON.stringify({"gameId":splashForm.querySelector("#gameId").value });
 
         fetch(myRequest, requestInit)
         //.then(res => res.json())
         //.then((result) => {
         .then(() => {
             //this.props.onGameStart(result, playerName);
-        });
-    }
+        }); 
+    } 
 
-    loadGame(playerName, action, gameName) {
+    loadGame(playerName, action, gameName) { 
 
         var myRequest = new Request(Utility.apiServer() + "/" + action);
         var requestInit = Utility.postRequestInit();
         requestInit.body = JSON.stringify({"playerName":playerName,"gameName":gameName });
 
         fetch(myRequest, requestInit)
-        //.then(res => res.json())
-        .then(() => {
+        .then(res => res.json())
+        .then((resultJson) => {
             document.cookie = "playerName=" + playerName;
             document.cookie = "gameName=" + (gameName ? gameName : playerName);
+            document.querySelector("#gameId").value = resultJson.id;
             //this.props.onGameStart(result, playerName);
         });
     }
@@ -67,6 +68,7 @@ class Start extends Component {
                 <button onClick={(event) => this.handleNewGame(event)} >New Game</button>
                 <button onClick={(event) => this.handleJoinGame(event)} >Join Game</button>
                 <button onClick={(event) => this.handleStartGame(event)} >Start Game</button>
+                <input type="text" name="gameId" id="gameId" />
             </form>
         )
     }
